@@ -1,0 +1,299 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width,
+                 initial-scale=1.0,
+                 maximum-scale=1.0,
+                 user-scalable=no"
+    >
+
+    <title>Car Racing</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="gameWrapper">
+
+        <canvas
+            id="gameCanvas"
+            tabindex="0"
+        ></canvas>
+
+        <!-- Mobile controls -->
+        <div id="mobileControls">
+
+            <div class="leftControls">
+
+                <button
+                    id="leftBtn"
+                    class="controlBtn"
+                    type="button"
+                >
+                    ◀
+                </button>
+
+                <button
+                    id="rightBtn"
+                    class="controlBtn"
+                    type="button"
+                >
+                    ▶
+                </button>
+
+            </div>
+
+            <div class="centerControls">
+
+                <button
+                    id="upBtn"
+                    class="controlBtn"
+                    type="button"
+                >
+                    ▲
+                </button>
+
+                <button
+                    id="downBtn"
+                    class="controlBtn"
+                    type="button"
+                >
+                    ▼
+                </button>
+
+            </div>
+
+            <div class="rightControls">
+
+                <button
+                    id="nitroBtn"
+                    class="nitroBtn"
+                    type="button"
+                >
+                    NITRO
+                </button>
+
+                <button
+                    id="pauseBtn"
+                    class="smallBtn"
+                    type="button"
+                >
+                    ⏸
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Mobile utility buttons -->
+        <div id="utilityControls">
+
+            <button
+                id="nightBtn"
+                type="button"
+            >
+                🌙
+            </button>
+
+            <button
+                id="rainBtn"
+                type="button"
+            >
+                🌧
+            </button>
+
+            <button
+                id="fullscreenBtn"
+                type="button"
+            >
+                ⛶
+            </button>
+
+        </div>
+
+    </div>
+
+    <script src="game.js"></script>
+
+    <script>
+        /*
+         * MOBILE BUTTON CONTROLS
+         * These connect the buttons to the game.js variables.
+         */
+
+        function holdButton(button, onPress, onRelease) {
+
+            if (!button) return;
+
+            button.addEventListener("pointerdown", function(e) {
+                e.preventDefault();
+                onPress();
+            });
+
+            button.addEventListener("pointerup", function(e) {
+                e.preventDefault();
+                onRelease();
+            });
+
+            button.addEventListener("pointercancel", function(e) {
+                e.preventDefault();
+                onRelease();
+            });
+
+            button.addEventListener("pointerleave", function(e) {
+                e.preventDefault();
+                onRelease();
+            });
+        }
+
+
+        holdButton(
+            document.getElementById("leftBtn"),
+            function() {
+                leftPressed = true;
+            },
+            function() {
+                leftPressed = false;
+            }
+        );
+
+
+        holdButton(
+            document.getElementById("rightBtn"),
+            function() {
+                rightPressed = true;
+            },
+            function() {
+                rightPressed = false;
+            }
+        );
+
+
+        holdButton(
+            document.getElementById("upBtn"),
+            function() {
+                upPressed = true;
+            },
+            function() {
+                upPressed = false;
+            }
+        );
+
+
+        holdButton(
+            document.getElementById("downBtn"),
+            function() {
+                downPressed = true;
+            },
+            function() {
+                downPressed = false;
+            }
+        );
+
+
+        holdButton(
+            document.getElementById("nitroBtn"),
+            function() {
+                nitroPressed = true;
+            },
+            function() {
+                nitroPressed = false;
+            }
+        );
+
+
+        /*
+         * PAUSE
+         */
+
+        document
+            .getElementById("pauseBtn")
+            .addEventListener("click", function() {
+                togglePause();
+            });
+
+
+        /*
+         * NIGHT MODE
+         */
+
+        document
+            .getElementById("nightBtn")
+            .addEventListener("click", function() {
+
+                nightMode = !nightMode;
+
+            });
+
+
+        /*
+         * RAIN MODE
+         */
+
+        document
+            .getElementById("rainBtn")
+            .addEventListener("click", function() {
+
+                rainMode = !rainMode;
+
+            });
+
+
+        /*
+         * FULLSCREEN
+         */
+
+        document
+            .getElementById("fullscreenBtn")
+            .addEventListener("click", async function() {
+
+                try {
+
+                    if (!document.fullscreenElement) {
+
+                        await document
+                            .documentElement
+                            .requestFullscreen();
+
+                    } else {
+
+                        await document.exitFullscreen();
+
+                    }
+
+                } catch (error) {
+
+                    console.log(
+                        "Fullscreen unavailable:",
+                        error
+                    );
+
+                }
+
+            });
+
+
+        /*
+         * Release controls if the browser loses focus.
+         */
+
+        window.addEventListener("pointerup", function() {
+
+            leftPressed = false;
+            rightPressed = false;
+            upPressed = false;
+            downPressed = false;
+            nitroPressed = false;
+
+        });
+    </script>
+
+</body>
+</html>
+```
