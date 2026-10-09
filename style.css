@@ -1,0 +1,641 @@
+
+/* ============================================================
+   CAR RACING GAME
+   Responsive Desktop + Mobile
+   ============================================================ */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    background: #050505;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    touch-action: none;
+}
+
+
+body {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+}
+
+
+/* ============================================================
+   GAME WRAPPER
+   ============================================================ */
+
+#gameWrapper {
+
+    position: relative;
+
+    width: 100vw;
+
+    height: 100vh;
+
+    overflow: hidden;
+
+    background: #000;
+}
+
+
+/* ============================================================
+   CANVAS
+   ============================================================ */
+
+#gameCanvas {
+
+    display: block;
+
+    width: 100%;
+
+    height: 100%;
+
+    outline: none;
+
+    background: #111;
+
+    touch-action: none;
+
+    user-select: none;
+
+    -webkit-user-select: none;
+
+    -webkit-touch-callout: none;
+}
+
+
+/* ============================================================
+   MOBILE CONTROLS
+   ============================================================ */
+
+#mobileControls {
+
+    position: absolute;
+
+    left: 0;
+
+    right: 0;
+
+    bottom: 20px;
+
+    height: 150px;
+
+    padding:
+        0 18px;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+
+    pointer-events: none;
+
+    z-index: 20;
+}
+
+
+.leftControls,
+.centerControls,
+.rightControls {
+
+    display: flex;
+
+    gap: 12px;
+
+    align-items: center;
+
+    pointer-events: auto;
+}
+
+
+/* ============================================================
+   CONTROL BUTTONS
+   ============================================================ */
+
+.controlBtn,
+.nitroBtn,
+.smallBtn {
+
+    border: none;
+
+    outline: none;
+
+    color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    touch-action: none;
+
+    user-select: none;
+
+    -webkit-user-select: none;
+
+    -webkit-tap-highlight-color:
+        transparent;
+
+    box-shadow:
+        0 5px 15px
+        rgba(0, 0, 0, 0.45);
+
+    transition:
+        transform 0.08s,
+        filter 0.08s;
+}
+
+
+.controlBtn {
+
+    width: 62px;
+
+    height: 62px;
+
+    border-radius: 18px;
+
+    background:
+        rgba(20, 30, 45, 0.82);
+
+    border:
+        2px solid
+        rgba(255,255,255,0.28);
+
+    font-size: 26px;
+
+    backdrop-filter:
+        blur(8px);
+}
+
+
+.controlBtn:active {
+
+    transform:
+        scale(0.90);
+
+    filter:
+        brightness(1.35);
+}
+
+
+/* ============================================================
+   NITRO BUTTON
+   ============================================================ */
+
+.nitroBtn {
+
+    width: 92px;
+
+    height: 62px;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #006eff,
+            #00d9ff
+        );
+
+    border:
+        2px solid
+        rgba(255,255,255,0.55);
+
+    font-size: 15px;
+
+    letter-spacing: 1px;
+
+    box-shadow:
+        0 0 18px
+        rgba(0, 180, 255, 0.55),
+
+        0 6px 20px
+        rgba(0,0,0,0.5);
+}
+
+
+.nitroBtn:active {
+
+    transform:
+        scale(0.92);
+
+    background:
+        linear-gradient(
+            135deg,
+            #00bfff,
+            #ffffff
+        );
+
+    color: #003b65;
+
+    box-shadow:
+        0 0 35px
+        rgba(0, 220, 255, 0.95);
+}
+
+
+/* ============================================================
+   PAUSE BUTTON
+   ============================================================ */
+
+.smallBtn {
+
+    width: 55px;
+
+    height: 55px;
+
+    border-radius: 16px;
+
+    background:
+        rgba(20,20,20,0.78);
+
+    border:
+        2px solid
+        rgba(255,255,255,0.3);
+
+    font-size: 22px;
+
+    backdrop-filter:
+        blur(8px);
+}
+
+
+.smallBtn:active {
+
+    transform:
+        scale(0.90);
+}
+
+
+/* ============================================================
+   UTILITY BUTTONS
+   ============================================================ */
+
+#utilityControls {
+
+    position: absolute;
+
+    top: 20px;
+
+    right: 20px;
+
+    display: flex;
+
+    gap: 8px;
+
+    z-index: 30;
+}
+
+
+#utilityControls button {
+
+    width: 42px;
+
+    height: 42px;
+
+    border-radius: 12px;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.25);
+
+    background:
+        rgba(0,0,0,0.50);
+
+    color: white;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+    backdrop-filter:
+        blur(8px);
+
+    -webkit-tap-highlight-color:
+        transparent;
+}
+
+
+#utilityControls button:active {
+
+    transform:
+        scale(0.90);
+}
+
+
+/* ============================================================
+   DESKTOP
+   ============================================================ */
+
+@media (min-width: 900px) {
+
+    #mobileControls {
+
+        opacity: 0.72;
+
+    }
+
+    .controlBtn {
+
+        width: 58px;
+
+        height: 58px;
+
+    }
+
+    .nitroBtn {
+
+        width: 90px;
+
+        height: 58px;
+
+    }
+}
+
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+
+@media (
+    min-width: 600px
+) and (
+    max-width: 899px
+) {
+
+    #mobileControls {
+
+        bottom: 18px;
+
+    }
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 599px) {
+
+    #mobileControls {
+
+        bottom: 12px;
+
+        height: 135px;
+
+        padding:
+            0 10px;
+    }
+
+
+    .leftControls,
+    .centerControls,
+    .rightControls {
+
+        gap: 7px;
+
+    }
+
+
+    .controlBtn {
+
+        width: 52px;
+
+        height: 52px;
+
+        border-radius: 15px;
+
+        font-size: 22px;
+    }
+
+
+    .nitroBtn {
+
+        width: 78px;
+
+        height: 52px;
+
+        border-radius: 15px;
+
+        font-size: 12px;
+    }
+
+
+    .smallBtn {
+
+        width: 45px;
+
+        height: 45px;
+
+        border-radius: 13px;
+
+        font-size: 18px;
+    }
+
+
+    #utilityControls {
+
+        top: 10px;
+
+        right: 10px;
+
+        gap: 5px;
+    }
+
+
+    #utilityControls button {
+
+        width: 36px;
+
+        height: 36px;
+
+        border-radius: 10px;
+
+        font-size: 16px;
+    }
+}
+
+
+/* ============================================================
+   VERY SMALL PHONES
+   ============================================================ */
+
+@media (max-width: 380px) {
+
+    #mobileControls {
+
+        bottom: 8px;
+
+        padding:
+            0 5px;
+    }
+
+
+    .leftControls,
+    .centerControls,
+    .rightControls {
+
+        gap: 4px;
+    }
+
+
+    .controlBtn {
+
+        width: 46px;
+
+        height: 46px;
+
+        font-size: 19px;
+    }
+
+
+    .nitroBtn {
+
+        width: 68px;
+
+        height: 46px;
+
+        font-size: 10px;
+    }
+
+
+    .smallBtn {
+
+        width: 40px;
+
+        height: 40px;
+
+        font-size: 16px;
+    }
+}
+
+
+/* ============================================================
+   LANDSCAPE MOBILE
+   ============================================================ */
+
+@media (
+    max-height: 500px
+) {
+
+    #mobileControls {
+
+        bottom: 6px;
+
+        height: 105px;
+    }
+
+
+    .controlBtn {
+
+        width: 45px;
+
+        height: 45px;
+
+        font-size: 18px;
+    }
+
+
+    .nitroBtn {
+
+        width: 72px;
+
+        height: 45px;
+
+        font-size: 10px;
+    }
+
+
+    .smallBtn {
+
+        width: 40px;
+
+        height: 40px;
+    }
+
+
+    #utilityControls {
+
+        top: 7px;
+
+        right: 7px;
+    }
+
+
+    #utilityControls button {
+
+        width: 32px;
+
+        height: 32px;
+
+        font-size: 14px;
+    }
+}
+
+
+/* ============================================================
+   FULLSCREEN
+   ============================================================ */
+
+:fullscreen #gameWrapper {
+
+    width: 100vw;
+
+    height: 100vh;
+}
+
+
+:-webkit-full-screen #gameWrapper {
+
+    width: 100vw;
+
+    height: 100vh;
+}
+
+
+/* ============================================================
+   REMOVE MOBILE HIGHLIGHT
+   ============================================================ */
+
+button,
+canvas {
+
+    -webkit-tap-highlight-color:
+        transparent;
+}
+
+
+/* ============================================================
+   SAFE AREA FOR PHONES
+   ============================================================ */
+
+@supports (
+    padding-bottom:
+    env(safe-area-inset-bottom)
+) {
+
+    #mobileControls {
+
+        padding-bottom:
+            env(safe-area-inset-bottom);
+    }
+}
+
